@@ -1,7 +1,9 @@
 package com.mbathegamer.store.services;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+@Primary
 @Service("paypal")
 public class PayPalPaymentService implements PaymentService {
   @Override
