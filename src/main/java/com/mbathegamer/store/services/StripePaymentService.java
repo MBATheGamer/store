@@ -3,9 +3,9 @@ package com.mbathegamer.store.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+// import org.springframework.stereotype.Service;
 
-@Service("stripe")
+// @Service("stripe")
 public class StripePaymentService implements PaymentService {
   @Value("${stripe.api-url}")
   private String apiUrl;

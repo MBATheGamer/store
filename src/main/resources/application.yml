@@ -5,6 +5,8 @@ spring:
 app:
   page-size: 10
 
+payment-gateway: stripe
+
 stripe:
   api-url: https://api.stripe.com
   enabled: true

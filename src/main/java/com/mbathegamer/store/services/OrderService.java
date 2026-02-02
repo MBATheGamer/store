@@ -1,10 +1,10 @@
 package com.mbathegamer.store.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+// import org.springframework.beans.factory.annotation.Qualifier;
+// import org.springframework.stereotype.Service;
 
-@Service
+// @Service
 public class OrderService {
   private PaymentService paymentService;
 
@@ -12,7 +12,8 @@ public class OrderService {
   }
 
   @Autowired
-  public OrderService(@Qualifier("stripe") PaymentService service) {
+  // public OrderService(@Qualifier("stripe") PaymentService service) {
+  public OrderService(PaymentService service) {
     this.paymentService = service;
   }
 
