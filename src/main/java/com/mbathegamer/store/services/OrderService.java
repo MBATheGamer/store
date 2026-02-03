@@ -14,6 +14,7 @@ public class OrderService {
   @Autowired
   // public OrderService(@Qualifier("stripe") PaymentService service) {
   public OrderService(PaymentService service) {
+    System.out.println("OrderService created");
     this.paymentService = service;
   }
 

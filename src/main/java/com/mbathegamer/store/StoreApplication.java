@@ -4,7 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.mbathegamer.store.services.OrderService;
+import com.mbathegamer.store.components.HeavyResource;
+// import com.mbathegamer.store.services.OrderService;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -13,8 +14,10 @@ public class StoreApplication {
 
 		ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 
-		var orderService = context.getBean(OrderService.class);
-		orderService.placeOrder();
+		context.getBean(HeavyResource.class);
+
+		// var orderService = context.getBean(OrderService.class);
+		// orderService.placeOrder();
 
 		// var manager = context.getBean(NotificationManager.class);
 		// manager.sendNotification("This is a test");
