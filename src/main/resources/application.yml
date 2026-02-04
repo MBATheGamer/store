@@ -7,18 +7,3 @@ spring:
     password: root
   jpa:
     open-in-view: false
-
-app:
-  page-size: 10
-
-payment-gateway: stripe
-
-stripe:
-  api-url: https://api.stripe.com
-  enabled: true
-  timeout: 1000
-  supported-currencies: USD,EUR,TND
-
-mail:
-  host: https://smtp.google.com
-  port: 5761
