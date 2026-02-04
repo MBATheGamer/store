@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 // import org.springframework.context.ConfigurableApplicationContext;
 
-import com.mbathegamer.store.models.User;
-import com.mbathegamer.store.services.UserService;
+// import com.mbathegamer.store.models.User;
+// import com.mbathegamer.store.services.UserService;
 
 // import com.mbathegamer.store.components.HeavyResource;
 // import com.mbathegamer.store.services.OrderService;
@@ -32,8 +32,8 @@ public class StoreApplication {
 		// var manager = context.getBean(NotificationManager.class);
 		// manager.sendNotification("This is a test");
 
-		var userService = context.getBean(UserService.class);
-		userService.registerUser(new User(1L, "test@test.com", "test123", "test"));
-		userService.registerUser(new User(1L, "test@test.com", "test123", "test"));
+		// var userService = context.getBean(UserService.class);
+		// userService.registerUser(new User(1L, "test@test.com", "test123", "test"));
+		// userService.registerUser(new User(1L, "test@test.com", "test123", "test"));
 	}
 }
