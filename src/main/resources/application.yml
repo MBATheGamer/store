@@ -12,3 +12,7 @@ stripe:
   enabled: true
   timeout: 1000
   supported-currencies: USD,EUR,TND
+
+mail:
+  host: https://smtp.google.com
+  port: 5761
