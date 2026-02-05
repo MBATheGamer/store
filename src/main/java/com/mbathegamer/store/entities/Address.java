@@ -2,6 +2,7 @@ package com.mbathegamer.store.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,8 +42,8 @@ public class Address {
   @Column(name = "state")
   private String state;
 
-  @ManyToOne
   @ToString.Exclude
   @JoinColumn(name = "user_id")
+  @ManyToOne(fetch = FetchType.LAZY)
   private User user;
 }
