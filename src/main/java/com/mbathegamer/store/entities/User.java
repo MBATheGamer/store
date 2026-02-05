@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,6 +45,9 @@ public class User {
 
   @Column(name = "password", nullable = false)
   private String password;
+
+  @OneToOne(mappedBy = "user")
+  private Profile profile;
 
   @Builder.Default
   @OneToMany(mappedBy = "user")
@@ -79,5 +83,15 @@ public class User {
 
       return false;
     });
+  }
+
+  public void addProfile(Profile profile) {
+    this.profile = profile;
+    profile.setUser(this);
+  }
+
+  public void removeProfile(Profile profile) {
+    this.profile = null;
+    profile.setUser(null);
   }
 }
