@@ -47,11 +47,11 @@ public class User {
   @Column(name = "password", nullable = false)
   private String password;
 
-  @OneToOne(mappedBy = "user")
+  @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
   private Profile profile;
 
   @Builder.Default
-  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+  @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
   private List<Address> addresses = new ArrayList<>();
 
   @ManyToMany
