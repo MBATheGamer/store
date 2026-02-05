@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
@@ -42,7 +43,7 @@ public class Profile {
   private Integer loyaltyPoints;
 
   @MapsId
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   @ToString.Exclude
   @JoinColumn(name = "id")
   private User user;
