@@ -1,9 +1,9 @@
 package com.mbathegamer.store.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,19 +18,21 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "profiles")
+public class Profile {
   @Id
   @Column(name = "id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "name", nullable = false)
-  private String name;
+  @Column(name = "bio")
+  private String bio;
 
-  @Column(name = "email", nullable = false)
-  private String email;
+  @Column(name = "phone_number")
+  private String phoneNumber;
 
-  @Column(name = "password", nullable = false)
-  private String password;
+  @Column(name = "date_of_birth")
+  private LocalDate dateOfBirth;
+
+  @Column(name = "loyalty_points")
+  private Integer loyaltyPoints;
 }
