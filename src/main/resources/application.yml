@@ -7,3 +7,6 @@ spring:
     password: root
   jpa:
     open-in-view: false
+    # Only use for development purpose
+    # hibernate:
+    #   ddl-auto: create
