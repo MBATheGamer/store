@@ -2,6 +2,7 @@ package com.mbathegamer.store.entities;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,8 +41,8 @@ public class Product {
   @Column(name = "price")
   private BigDecimal price;
 
-  @ManyToOne
   @ToString.Exclude
   @JoinColumn(name = "category_id")
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Category category;
 }

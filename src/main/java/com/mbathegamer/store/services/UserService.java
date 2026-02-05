@@ -1,13 +1,14 @@
 package com.mbathegamer.store.services;
 
+// import java.math.BigDecimal;
+
 import org.springframework.stereotype.Service;
 
 import com.mbathegamer.store.entities.Address;
+// import com.mbathegamer.store.entities.Category;
+// import com.mbathegamer.store.entities.Product;
 import com.mbathegamer.store.entities.User;
-import com.mbathegamer.store.repositories.AddressRepository;
-import com.mbathegamer.store.repositories.ProfileRepository;
-import com.mbathegamer.store.repositories.UserRepository;
-
+import com.mbathegamer.store.repositories.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,8 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class UserService {
+  // private final CategoryRepository categoryRepository;
+  private final ProductRepository productRepository;
   private final AddressRepository addressRepository;
   private final UserRepository userRepository;
   private final ProfileRepository profileRepository;
@@ -81,5 +84,45 @@ public class UserService {
 
     user.removeAddress(address);
     userRepository.save(user);
+  }
+
+  @Transactional
+  public void manageProducts() {
+    // Step 1
+    // var category = Category.builder()
+    // .name("category1")
+    // .build();
+
+    // var product = Product.builder()
+    // .name("product1")
+    // .description("description")
+    // .price(BigDecimal.valueOf(1.99))
+    // .category(category)
+    // .build();
+
+    // productRepository.save(product);
+
+    // Step 2
+    // var category = categoryRepository.findById((byte) 1).orElseThrow();
+
+    // var product = Product.builder()
+    // .name("product1")
+    // .description("description")
+    // .price(BigDecimal.valueOf(1.99))
+    // .category(category)
+    // .build();
+
+    // productRepository.save(product);
+
+    // Step 3
+    // var user = userRepository.findById(1L).orElseThrow();
+    // var products = productRepository.findAll();
+
+    // products.forEach(user::addToWishlist);
+
+    // userRepository.save(user);
+
+    // Step 4
+    productRepository.deleteById(2L);
   }
 }

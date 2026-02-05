@@ -100,4 +100,8 @@ public class User {
       return false;
     });
   }
+
+  public void addToWishlist(Product product) {
+    wishlist.add(product);
+  }
 }
