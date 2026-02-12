@@ -1,5 +1,7 @@
 package com.mbathegamer.store.services;
 
+import java.math.BigDecimal;
+
 // import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
@@ -124,5 +126,10 @@ public class UserService {
 
     // Step 4
     productRepository.deleteById(2L);
+  }
+
+  @Transactional
+  public void updateProductPrice() {
+    productRepository.updatePriceByCategory(BigDecimal.valueOf(9.99), (byte) 1);
   }
 }

@@ -1,6 +1,9 @@
 package com.mbathegamer.store.repositories;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mbathegamer.store.entities.Product;
@@ -57,4 +60,19 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
   List<Product> findTop5ByNameOrderByPriceDesc(String name);
 
   List<Product> findFirst5ByNameOrderByPriceDesc(String name);
+
+  // Find products whose prices are in a given range and sort by name
+  // SQL
+  // @Query(value = "select * from products p where p.price between :min and :max
+  // order by p.name", nativeQuery = true)
+  // JPQL
+  @Query("select p from Product p join p.category where p.price between :min and :max order by p.name")
+  List<Product> findByProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+  @Query("select count(*) from Product p where p.price between :min and :max")
+  long countProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+  @Modifying
+  @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
+  void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
 }
