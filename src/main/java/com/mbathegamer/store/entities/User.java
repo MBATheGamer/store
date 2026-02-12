@@ -22,13 +22,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+// import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @Builder
-@ToString
+// @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
@@ -51,17 +51,20 @@ public class User {
   private Profile profile;
 
   @Builder.Default
-  @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+  @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
+      orphanRemoval = true)
   private List<Address> addresses = new ArrayList<>();
 
   @ManyToMany
   @Builder.Default
-  @JoinTable(name = "user_tags", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+  @JoinTable(name = "user_tags", joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "tag_id"))
   private Set<Tag> tags = new HashSet<>();
 
   @ManyToMany
   @Builder.Default
-  @JoinTable(name = "wishlist", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+  @JoinTable(name = "wishlist", joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "product_id"))
   private Set<Product> wishlist = new HashSet<>();
 
   public void addProfile(Profile profile) {
@@ -103,5 +106,10 @@ public class User {
 
   public void addToWishlist(Product product) {
     wishlist.add(product);
+  }
+
+  @Override
+  public String toString() {
+    return "User (id = " + id + ", name = " + name + ", email = " + email + ")";
   }
 }
