@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 
 import com.mbathegamer.store.entities.Address;
+import com.mbathegamer.store.entities.Category;
 // import com.mbathegamer.store.entities.Category;
 // import com.mbathegamer.store.entities.Product;
 import com.mbathegamer.store.entities.User;
@@ -131,5 +132,10 @@ public class UserService {
   @Transactional
   public void updateProductPrice() {
     productRepository.updatePriceByCategory(BigDecimal.valueOf(9.99), (byte) 1);
+  }
+
+  public void fetchProducts() {
+    var products = productRepository.findByCategory(new Category((byte) 1));
+    products.forEach(System.out::println);
   }
 }
