@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.data.jpa.domain.Specification;
 
 // import java.math.BigDecimal;
 
@@ -16,6 +17,8 @@ import com.mbathegamer.store.entities.Product;
 // import com.mbathegamer.store.entities.Product;
 import com.mbathegamer.store.entities.User;
 import com.mbathegamer.store.repositories.*;
+import com.mbathegamer.store.repositories.specifications.ProductSpec;
+
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -165,6 +168,24 @@ public class UserService {
         .findProductByCriteria("product", BigDecimal.valueOf(1), BigDecimal.valueOf(9.99));
 
     products.forEach(System.out::println);
+  }
+
+  public void fetchProductsBySpecifications(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+    Specification<Product> specification = (root, query, cb) -> cb.conjunction();
+
+    if (name != null) {
+      specification = specification.and(ProductSpec.hasName(name));
+    }
+
+    if (minPrice != null) {
+      specification = specification.and(ProductSpec.hasPriceGreaterThanOrEqualTo(minPrice));
+    }
+
+    if (maxPrice != null) {
+      specification = specification.and(ProductSpec.hasPriceLessThanOrEqualTo(maxPrice));
+    }
+
+    productRepository.findAll(specification).forEach(System.out::println);
   }
 
   @Transactional
