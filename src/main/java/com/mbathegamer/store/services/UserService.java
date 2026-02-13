@@ -159,4 +159,14 @@ public class UserService {
       user.getAddresses().forEach(System.out::println);
     });
   }
+
+  @Transactional
+  public void printLoyalProfiles() {
+    // var profiles = profileRepository.findLoyaltyPoints(2);
+    var users = userRepository.findLoyalUsers(2);
+
+    users.forEach(user -> {
+      System.out.println(user.getId() + ": " + user.getEmail());
+    });
+  }
 }
