@@ -2,11 +2,16 @@ package com.mbathegamer.store.services;
 
 import java.math.BigDecimal;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+
 // import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
 import com.mbathegamer.store.entities.Address;
+import com.mbathegamer.store.entities.Product;
 // import com.mbathegamer.store.entities.Category;
 // import com.mbathegamer.store.entities.Product;
 import com.mbathegamer.store.entities.User;
@@ -136,8 +141,21 @@ public class UserService {
   @Transactional
   public void fetchProducts() {
     // var products = productRepository.findByCategory(new Category((byte) 1));
-    var products = productRepository
-        .findByProducts(BigDecimal.valueOf(1), BigDecimal.valueOf(9.99));
+    // var products = productRepository
+    // .findByProducts(BigDecimal.valueOf(1), BigDecimal.valueOf(9.99));
+
+    // products.forEach(System.out::println);
+
+    var product = new Product();
+    product.setName("product");
+
+    var matcher = ExampleMatcher.matching()
+        .withIncludeNullValues()
+        .withIgnorePaths("id", "description")
+        .withStringMatcher(StringMatcher.STARTING);
+
+    var example = Example.of(product, matcher);
+    var products = productRepository.findAll(example);
 
     products.forEach(System.out::println);
   }
