@@ -160,6 +160,13 @@ public class UserService {
     products.forEach(System.out::println);
   }
 
+  public void fetchProductByCriteria() {
+    var products = productRepository
+        .findProductByCriteria("product", BigDecimal.valueOf(1), BigDecimal.valueOf(9.99));
+
+    products.forEach(System.out::println);
+  }
+
   @Transactional
   public void fetchUser() {
     var user = userRepository.findByEmail("john.doe@example.com").orElseThrow();

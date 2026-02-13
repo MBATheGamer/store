@@ -18,7 +18,7 @@ import java.util.List;
 
 @Repository
 // public interface ProductRepository extends CrudRepository<Product, Long> {
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository {
   // String
   // select * from products where name = ?
   List<Product> findByName(String name);
